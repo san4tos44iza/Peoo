@@ -1,0 +1,51 @@
+class ContaBancaria:
+    def __init__(self, numero, titular, deposito_inicial=0):
+        self.numero = numero
+        self.titular = titular
+        self.saldo = deposito_inicial
+
+    def deposito(self, quantia):
+        if quantia > 0:
+            self.saldo += quantia
+            print(f'Depósito de R$ {quantia:.2f} realizado.')
+        else:
+            print('Valor de depósito inválido!')
+
+    def saque(self, quantia):
+        if quantia > 0 and quantia <= self.saldo:
+            self.saldo -= quantia
+            print(f'Saque de R$ {quantia:.2f} realizado.')
+        else:
+            print('Valor de saque inválido ou saldo insuficiente!')
+
+    def mostrar_dados(self):
+        print(f'Número da conta: {self.numero}')
+        print(f'Titular: {self.titular}')
+        print(f'Saldo: R$ {self.saldo:.2f}')
+
+# Função de cadastro e operações
+def main():
+    numero = int(input('Informe o número da conta: '))
+    titular = input('Informe o nome do titular: ')
+
+    deposito_inicial = input('Informe o depósito inicial (pressione Enter para pular): ')
+    if deposito_inicial:
+        conta = ContaBancaria(numero, titular, float(deposito_inicial))
+    else:
+        conta = ContaBancaria(numero, titular)
+
+    conta.mostrar_dados()
+
+    # Operação de depósito
+    deposito = float(input('Informe o valor a ser depositado: '))
+    conta.deposito(deposito)
+    conta.mostrar_dados()
+
+    # Operação de saque
+    saque = float(input('Informe o valor a ser sacado: '))
+    conta.saque(saque)
+    conta.mostrar_dados()
+# classe e funções...
+
+print("Iniciando o cadastro da conta...")
+main()
